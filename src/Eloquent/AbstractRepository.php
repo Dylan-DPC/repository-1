@@ -287,6 +287,24 @@ abstract class AbstractRepository implements Repository,Eloquent
         return $rows;
     }
 
+
+     protected function byIdOrFail($id)
+     {
+         $model = $this->byId($id);
+         if (empty($model)) {
+             throw new ResourceNotFoundException();
+         }
+         return $model;
+     }
+     public function byIntIdOrFail(int $id): Model
+     {
+         return $this->byIdOrFail($id);
+     }
+     public function byStringIdOrFail(string $id): Model
+     {
+         return $this->byIdOrFail($id);
+     }
+
     /**
      * @param string $id
      * @return int
@@ -462,14 +480,14 @@ abstract class AbstractRepository implements Repository,Eloquent
     /**
      * @return Model
      */
-//    public function firstOrFail(): Model
-//    {
-//         $model = $this->first();
-//         if (empty($model)) {
-//             throw new ResourceNotFoundException();
-//         }
-//         return $model;
-//    }
+    public function firstOrFail(): Model
+    {
+         $model = $this->first();
+         if (empty($model)) {
+             throw new ResourceNotFoundException();
+         }
+         return $model;
+    }
 
 
     /**
