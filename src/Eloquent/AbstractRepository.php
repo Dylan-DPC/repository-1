@@ -195,8 +195,9 @@ abstract class AbstractRepository implements Repository,Eloquent
      */
     public function delete( $id): int
     {
+        $rows = 0;
         try {
-            $rows = $this->queryRelate->where('id',$id)->delete();
+            $rows = $this->queryRelate->where($this->getModel()->getKeyName(),$id)->getQuery()->delete();
         } catch (\Exception $exception) {
             throw new ResourceDeleteException($exception->getMessage());
         } finally {
@@ -224,7 +225,7 @@ abstract class AbstractRepository implements Repository,Eloquent
     public function deleteByArray(array $ids) : int
     {
         try {
-            return $this->newDefaultQueryRelate()->whereIn('id',$ids)->delete();
+            return $this->newDefaultQueryRelate()->whereIn($this->getModel()->getKeyName(),$ids)->delete();
         } catch (\Exception $exception) {
             throw new ResourceDeleteException($exception->getMessage());
         }
