@@ -1,7 +1,7 @@
 <?php
 namespace CrCms\Repository\Contracts\Eloquent;
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 interface QueryRelate
 {
