@@ -376,9 +376,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Illuminate\Database\Query\Builder $query
      * @return BaseEloquentQueryRelate
      */
-    public function union(Builder $query): BaseEloquentQueryRelate
+    public function union(Builder $query,bool $all = false): BaseEloquentQueryRelate
     {
-        $this->query->union($query);
+        $this->query->union($query,$all);
         return $this;
     }
 

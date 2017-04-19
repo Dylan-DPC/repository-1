@@ -9,7 +9,7 @@ interface QueryRelate
      * @param string $query
      * @return QueryRelate
      */
-    public function union(Builder $query) : QueryRelate;
+    public function union(Builder $query,bool $all = false) : QueryRelate;
 
 
     /**
