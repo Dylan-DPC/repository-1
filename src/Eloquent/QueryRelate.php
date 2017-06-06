@@ -1,4 +1,5 @@
 <?php
+
 namespace CrCms\Repository\Eloquent;
 
 use CrCms\Repository\Contracts\Eloquent\QueryMagic;
@@ -11,9 +12,8 @@ use Illuminate\Database\Eloquent\Builder;
  * Class QueryRelate
  * @package CrCms\Repository\Eloquent
  */
-class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
+class QueryRelate implements BaseQueryRelate, BaseEloquentQueryRelate
 {
-
     /**
      * @var null
      */
@@ -35,7 +35,6 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
         $this->setRepository($repository);
     }
 
-
     /**
      * @param Repository $repository
      * @return BaseQueryRelate
@@ -53,7 +52,6 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
     {
         return $this->repository;
     }
-
 
     /**
      * @return Builder
@@ -73,12 +71,11 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
         return $this;
     }
 
-
     /**
      * @param array $column
      * @return BaseQueryRelate
      */
-    public function select(array $column = ['*']): BaseQueryRelate
+    public function select(array $column = ['*']) : BaseQueryRelate
     {
         $this->query->select($column);
         return $this;
@@ -89,9 +86,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $bindings
      * @return BaseQueryRelate
      */
-    public function selectRaw(string $expression, array $bindings = []): BaseQueryRelate
+    public function selectRaw(string $expression, array $bindings = []) : BaseQueryRelate
     {
-        $this->query->selectRaw($expression,$bindings);
+        $this->query->selectRaw($expression, $bindings);
         return $this;
     }
 
@@ -99,7 +96,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param int $limit
      * @return BaseQueryRelate
      */
-    public function skip(int $limit): BaseQueryRelate
+    public function skip(int $limit) : BaseQueryRelate
     {
         $this->query->skip($limit);
         return $this;
@@ -109,7 +106,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param int $limit
      * @return BaseQueryRelate
      */
-    public function take(int $limit): BaseQueryRelate
+    public function take(int $limit) : BaseQueryRelate
     {
         $this->query->take($limit);
         return $this;
@@ -119,7 +116,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $column
      * @return BaseQueryRelate
      */
-    public function groupBy(string $column): BaseQueryRelate
+    public function groupBy(string $column) : BaseQueryRelate
     {
         $this->query->groupBy($column);
         return $this;
@@ -129,7 +126,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $columns
      * @return BaseQueryRelate
      */
-    public function groupByArray(array $columns): BaseQueryRelate
+    public function groupByArray(array $columns) : BaseQueryRelate
     {
         $this->query->groupBy($columns);
         return $this;
@@ -140,9 +137,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $sort
      * @return BaseQueryRelate
      */
-    public function orderBy(string $column, string $sort = 'desc'): BaseQueryRelate
+    public function orderBy(string $column, string $sort = 'desc') : BaseQueryRelate
     {
-        $this->query->orderBy($column,$sort);
+        $this->query->orderBy($column, $sort);
         return $this;
     }
 
@@ -150,18 +147,18 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $columns
      * @return BaseQueryRelate
      */
-    public function orderByArray(array $columns): BaseQueryRelate
+    public function orderByArray(array $columns) : BaseQueryRelate
     {
-        array_map(function($value,$key){
-           $this->query->orderBy($key,$value);
-        },$columns);
+        array_map(function ($value, $key) {
+            $this->query->orderBy($key, $value);
+        }, $columns);
         return $this;
     }
 
     /**
      * @return BaseQueryRelate
      */
-    public function distinct(): BaseQueryRelate
+    public function distinct() : BaseQueryRelate
     {
         // TODO: Implement distinct() method.
         $this->query->distinct();
@@ -174,9 +171,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $value
      * @return BaseQueryRelate
      */
-    public function where(string $column, string $operator = '=', string $value = ''): BaseQueryRelate
+    public function where(string $column, string $operator = '=', string $value = '') : BaseQueryRelate
     {
-        $this->query->where($column,$operator,$value);
+        $this->query->where($column, $operator, $value);
         return $this;
     }
 
@@ -186,9 +183,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $value
      * @return BaseQueryRelate
      */
-    public function orWhere(string $column, string $operator = '=', string $value = ''): BaseQueryRelate
+    public function orWhere(string $column, string $operator = '=', string $value = '') : BaseQueryRelate
     {
-        $this->query->orWhere($column,$operator,$value);
+        $this->query->orWhere($column, $operator, $value);
         return $this;
     }
 
@@ -197,9 +194,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $between
      * @return BaseQueryRelate
      */
-    public function whereBetween(string $column, array $between): BaseQueryRelate
+    public function whereBetween(string $column, array $between) : BaseQueryRelate
     {
-        $this->query->whereBetween($column,$between);
+        $this->query->whereBetween($column, $between);
         return $this;
     }
 
@@ -208,9 +205,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $between
      * @return BaseQueryRelate
      */
-    public function orWhereBetween(string $column, array $between): BaseQueryRelate
+    public function orWhereBetween(string $column, array $between) : BaseQueryRelate
     {
-        $this->query->orWhereBetween($column,$between);
+        $this->query->orWhereBetween($column, $between);
         return $this;
     }
 
@@ -219,9 +216,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $bindings
      * @return BaseQueryRelate
      */
-    public function whereRaw(string $sql, array $bindings = []): BaseQueryRelate
+    public function whereRaw(string $sql, array $bindings = []) : BaseQueryRelate
     {
-        $this->query->whereRaw($sql,$bindings);
+        $this->query->whereRaw($sql, $bindings);
         return $this;
     }
 
@@ -230,9 +227,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $bindings
      * @return BaseQueryRelate
      */
-    public function orWhereRaw(string $sql, array $bindings = []): BaseQueryRelate
+    public function orWhereRaw(string $sql, array $bindings = []) : BaseQueryRelate
     {
-        $this->query->orWhereRaw($sql,$bindings);
+        $this->query->orWhereRaw($sql, $bindings);
         return $this;
     }
 
@@ -241,9 +238,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $between
      * @return BaseQueryRelate
      */
-    public function orWhereNotBetween($column, array $between): BaseQueryRelate
+    public function orWhereNotBetween($column, array $between) : BaseQueryRelate
     {
-        $this->query->orWhereNotBetween($column,$between);
+        $this->query->orWhereNotBetween($column, $between);
         return $this;
     }
 
@@ -251,7 +248,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function whereExists(\Closure $callback): BaseQueryRelate
+    public function whereExists(\Closure $callback) : BaseQueryRelate
     {
         $this->query->whereExists($callback);
         return $this;
@@ -261,7 +258,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function orWhereExists(\Closure $callback): BaseQueryRelate
+    public function orWhereExists(\Closure $callback) : BaseQueryRelate
     {
         $this->query->orWhereExists($callback);
         return $this;
@@ -271,7 +268,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function whereNotExists(\Closure $callback): BaseQueryRelate
+    public function whereNotExists(\Closure $callback) : BaseQueryRelate
     {
         $this->query->whereNotExists($callback);
         return $this;
@@ -281,7 +278,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function orWhereNotExists(\Closure $callback): BaseQueryRelate
+    public function orWhereNotExists(\Closure $callback) : BaseQueryRelate
     {
         $this->query->orWhereNotExists($callback);
         return $this;
@@ -292,9 +289,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $values
      * @return BaseQueryRelate
      */
-    public function whereIn(string $column, array $values): BaseQueryRelate
+    public function whereIn(string $column, array $values) : BaseQueryRelate
     {
-        $this->query->whereIn($column,$values);
+        $this->query->whereIn($column, $values);
         return $this;
     }
 
@@ -303,9 +300,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $values
      * @return BaseQueryRelate
      */
-    public function orWhereIn(string $column, array $values): BaseQueryRelate
+    public function orWhereIn(string $column, array $values) : BaseQueryRelate
     {
-        $this->query->orWhereIn($column,$values);
+        $this->query->orWhereIn($column, $values);
         return $this;
     }
 
@@ -314,9 +311,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $values
      * @return BaseQueryRelate
      */
-    public function whereNotIn(string $column, array $values): BaseQueryRelate
+    public function whereNotIn(string $column, array $values) : BaseQueryRelate
     {
-        $this->query->whereNotIn($column,$values);
+        $this->query->whereNotIn($column, $values);
         return $this;
     }
 
@@ -325,9 +322,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $values
      * @return BaseQueryRelate
      */
-    public function orWhereNotIn(string $column, array $values): BaseQueryRelate
+    public function orWhereNotIn(string $column, array $values) : BaseQueryRelate
     {
-        $this->query->orWhereNotIn($column,$values);
+        $this->query->orWhereNotIn($column, $values);
         return $this;
     }
 
@@ -335,7 +332,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $column
      * @return BaseQueryRelate
      */
-    public function whereNull(string $column): BaseQueryRelate
+    public function whereNull(string $column) : BaseQueryRelate
     {
         $this->query->whereNull($column);
         return $this;
@@ -345,7 +342,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $column
      * @return BaseQueryRelate
      */
-    public function orWhereNull(string $column): BaseQueryRelate
+    public function orWhereNull(string $column) : BaseQueryRelate
     {
         $this->query->orWhereNull($column);
         return $this;
@@ -355,7 +352,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $column
      * @return BaseQueryRelate
      */
-    public function whereNotNull(string $column): BaseQueryRelate
+    public function whereNotNull(string $column) : BaseQueryRelate
     {
         $this->query->whereNotNull($column);
         return $this;
@@ -365,7 +362,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $column
      * @return BaseQueryRelate
      */
-    public function orWhereNotNull(string $column): BaseQueryRelate
+    public function orWhereNotNull(string $column) : BaseQueryRelate
     {
         $this->query->orWhereNotNull($column);
         return $this;
@@ -376,9 +373,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Illuminate\Database\Query\Builder $query
      * @return BaseEloquentQueryRelate
      */
-    public function union(Builder $query,bool $all = false): BaseEloquentQueryRelate
+    public function union(Builder $query, bool $all = false) : BaseEloquentQueryRelate
     {
-        $this->query->union($query,$all);
+        $this->query->union($query, $all);
         return $this;
     }
 
@@ -387,7 +384,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $sql
      * @return BaseQueryRelate
      */
-    public function raw(string $sql): BaseQueryRelate
+    public function raw(string $sql) : BaseQueryRelate
     {
         $this->query->raw($sql);
         return $this;
@@ -397,7 +394,7 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $table
      * @return BaseQueryRelate
      */
-    public function from(string $table): BaseQueryRelate
+    public function from(string $table) : BaseQueryRelate
     {
         $this->query->raw($table);
         return $this;
@@ -410,9 +407,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $two
      * @return BaseQueryRelate
      */
-    public function join(string $table, string $one, string $operator = '=', string $two = ''): BaseQueryRelate
+    public function join(string $table, string $one, string $operator = '=', string $two = '') : BaseQueryRelate
     {
-        $this->query->join($table,$one,$operator,$two);
+        $this->query->join($table, $one, $operator, $two);
         return $this;
     }
 
@@ -421,9 +418,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function joinByClosure(string $table, \Closure $callback): BaseQueryRelate
+    public function joinByClosure(string $table, \Closure $callback) : BaseQueryRelate
     {
-        $this->query->join($table,$callback);
+        $this->query->join($table, $callback);
         return $this;
     }
 
@@ -434,9 +431,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $two
      * @return BaseQueryRelate
      */
-    public function leftJoin(string $table, string $first, string $operator = '=', string $two = ''): BaseQueryRelate
+    public function leftJoin(string $table, string $first, string $operator = '=', string $two = '') : BaseQueryRelate
     {
-        $this->query->leftjoin($table,$first,$operator,$two);
+        $this->query->leftjoin($table, $first, $operator, $two);
         return $this;
     }
 
@@ -445,9 +442,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function leftJoinByClosure(string $table, \Closure $callback): BaseQueryRelate
+    public function leftJoinByClosure(string $table, \Closure $callback) : BaseQueryRelate
     {
-        $this->query->leftjoin($table,$callback);
+        $this->query->leftjoin($table, $callback);
         return $this;
     }
 
@@ -458,9 +455,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param string $two
      * @return BaseQueryRelate
      */
-    public function rightJoin(string $table, string $first, string $operator = '=', string $two = ''): BaseQueryRelate
+    public function rightJoin(string $table, string $first, string $operator = '=', string $two = '') : BaseQueryRelate
     {
-        $this->query->rightJoin($table,$first,$operator,$two);
+        $this->query->rightJoin($table, $first, $operator, $two);
         return $this;
     }
 
@@ -469,9 +466,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param \Closure $callback
      * @return BaseQueryRelate
      */
-    public function rightJoinByClosure(string $table, \Closure $callback): BaseQueryRelate
+    public function rightJoinByClosure(string $table, \Closure $callback) : BaseQueryRelate
     {
-        $this->query->rightJoinByClosure($table,$callback);
+        $this->query->rightJoinByClosure($table, $callback);
         return $this;
     }
 
@@ -479,9 +476,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param callable $callable
      * @return BaseQueryRelate
      */
-    public function callable(callable $callable): BaseQueryRelate
+    public function callable(callable $callable) : BaseQueryRelate
     {
-        $this->query = call_user_func($callable,$this->query);
+        $this->query = call_user_func($callable, $this->query);
         return $this;
     }
 
@@ -489,9 +486,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param array $wheres
      * @return BaseQueryRelate
      */
-    public function wheres(array $wheres): BaseQueryRelate
+    public function wheres(array $wheres) : BaseQueryRelate
     {
-        $this->query = (new ResolveWhereQuery)->getQuery($wheres,$this->query);
+        $this->query = (new ResolveWhereQuery)->getQuery($wheres, $this->query);
         return $this;
     }
 
@@ -499,9 +496,9 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      * @param QueryMagic $queryMagic
      * @return BaseEloquentQueryRelate
      */
-    public function magic(QueryMagic $queryMagic): BaseEloquentQueryRelate
+    public function magic(QueryMagic $queryMagic) : BaseEloquentQueryRelate
     {
-        $this->query = $queryMagic->magic($this->query,$this->repository);
+        $this->query = $queryMagic->magic($this->query, $this->repository);
         return $this;
     }
 
@@ -514,12 +511,11 @@ class QueryRelate implements BaseQueryRelate,BaseEloquentQueryRelate
      */
     public function __call($name, $arguments)
     {
-        if (method_exists($this->repository,$name)) {
-            return call_user_func_array([$this->repository,$name],$arguments);
+        if (method_exists($this->repository, $name)) {
+            return call_user_func_array([$this->repository, $name], $arguments);
         }
 
         $className = static::class;
         throw new \Exception("Call to undefined method {$className}::{$name}");
     }
-
 }

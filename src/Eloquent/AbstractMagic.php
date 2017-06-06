@@ -1,4 +1,5 @@
 <?php
+
 namespace CrCms\Repository\Eloquent;
 
 use CrCms\Repository\Contracts\Eloquent\QueryMagic;
@@ -16,7 +17,6 @@ abstract class AbstractMagic implements QueryMagic
      */
     protected $data = [];
 
-
     /**
      * @param array $data
      */
@@ -26,7 +26,6 @@ abstract class AbstractMagic implements QueryMagic
         return $this;
     }
 
-
     /**
      * @param Builder $query
      * @param Repository $repository
@@ -34,9 +33,8 @@ abstract class AbstractMagic implements QueryMagic
      */
     public function magic(Builder $query, Repository $repository) : Builder
     {
-        return $this->magicSearch($this->data,$query);
+        return $this->magicSearch($this->data, $query);
     }
-
 
     /**
      * @param array $data
@@ -45,9 +43,8 @@ abstract class AbstractMagic implements QueryMagic
      */
     protected function magicSearch(array $data, Builder $query) : Builder
     {
-        return $this->dispatch($this->filter($data),$query);
+        return $this->dispatch($this->filter($data), $query);
     }
-
 
     /**
      * @param array $data
@@ -56,17 +53,16 @@ abstract class AbstractMagic implements QueryMagic
      */
     protected function dispatch(array $data, Builder $query) : Builder
     {
-        foreach ($data as $key=>$item) {
+        foreach ($data as $key => $item) {
             $item = is_array($item) ? $item : trim($item);
-            $method = 'by'.studly_case($key);
+            $method = 'by' . studly_case($key);
 
-            if (method_exists($this,$method)) {
-                $query = call_user_func_array([$this,$method],[$item,$query]);
+            if (method_exists($this, $method)) {
+                $query = call_user_func_array([$this, $method], [$item, $query]);
             }
         }
         return $query;
     }
-
 
     /**
      * @param array $data
@@ -74,7 +70,7 @@ abstract class AbstractMagic implements QueryMagic
      */
     protected function filter(array $data) : array
     {
-        return array_filter($data,function($item){
+        return array_filter($data, function ($item) {
             if (is_array($item)) {
                 return $this->filter($item);
             }

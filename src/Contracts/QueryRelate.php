@@ -1,4 +1,5 @@
 <?php
+
 namespace CrCms\Repository\Contracts;
 
 /**
@@ -7,13 +8,11 @@ namespace CrCms\Repository\Contracts;
  */
 interface QueryRelate
 {
-
     /**
      * @param array $column
      * @return QueryRelate
      */
     public function select(array $column = ['*']) : QueryRelate;
-
 
     /**
      * @param string $expression
@@ -22,13 +21,11 @@ interface QueryRelate
      */
     public function selectRaw(string $expression, array $bindings = []) : QueryRelate;
 
-
     /**
      * @param int $limit
      * @return QueryRelate
      */
-    public function skip(int $limit) : QueryRelate ;
-
+    public function skip(int $limit) : QueryRelate;
 
     /**
      * @param int $limit
@@ -36,13 +33,11 @@ interface QueryRelate
      */
     public function take(int $limit) : QueryRelate;
 
-
     /**
      * @param string $column
      * @return QueryRelate
      */
-    public function groupBy(string $column) : QueryRelate ;
-
+    public function groupBy(string $column) : QueryRelate;
 
     /**
      * @param array $columns
@@ -50,14 +45,12 @@ interface QueryRelate
      */
     public function groupByArray(array $columns) : QueryRelate;
 
-
     /**
      * @param string $column
      * @param string $sort
      * @return QueryRelate
      */
-    public function orderBy(string $column, string $sort = 'desc') : QueryRelate ;
-
+    public function orderBy(string $column, string $sort = 'desc') : QueryRelate;
 
     /**
      * @param array $columns
@@ -65,12 +58,10 @@ interface QueryRelate
      */
     public function orderByArray(array $columns) : QueryRelate;
 
-
     /**
      * @return QueryRelate
      */
     public function distinct() : QueryRelate;
-
 
     /**
      * @param string $column
@@ -80,7 +71,6 @@ interface QueryRelate
      */
     public function where(string $column, string $operator = '=', string $value = '') : QueryRelate;
 
-
     /**
      * @param string $column
      * @param string $operator
@@ -89,14 +79,12 @@ interface QueryRelate
      */
     public function orWhere(string $column, string $operator = '=', string $value = '') : QueryRelate;
 
-
     /**
      * @param string $column
      * @param array $between
      * @return QueryRelate
      */
     public function whereBetween(string $column, array $between) : QueryRelate;
-
 
     /**
      * @param string $column
@@ -105,14 +93,12 @@ interface QueryRelate
      */
     public function orWhereBetween(string $column, array $between) : QueryRelate;
 
-
     /**
      * @param string $sql
      * @param array $bindings
      * @return QueryRelate
      */
     public function whereRaw(string $sql, array $bindings = []) : QueryRelate;
-
 
     /**
      * @param string $sql
@@ -121,7 +107,6 @@ interface QueryRelate
      */
     public function orWhereRaw(string $sql, array $bindings = []) : QueryRelate;
 
-
     /**
      * @param $column
      * @param array $between
@@ -129,13 +114,11 @@ interface QueryRelate
      */
     public function orWhereNotBetween($column, array $between) : QueryRelate;
 
-
     /**
      * @param \Closure $callback
      * @return QueryRelate
      */
     public function whereExists(\Closure $callback) : QueryRelate;
-
 
     /**
      * @param \Closure $callback
@@ -143,20 +126,17 @@ interface QueryRelate
      */
     public function orWhereExists(\Closure $callback) : QueryRelate;
 
-
     /**
      * @param \Closure $callback
      * @return QueryRelate
      */
     public function whereNotExists(\Closure $callback) : QueryRelate;
 
-
     /**
      * @param \Closure $callback
      * @return QueryRelate
      */
     public function orWhereNotExists(\Closure $callback) : QueryRelate;
-
 
     /**
      * @param string $column
@@ -165,14 +145,12 @@ interface QueryRelate
      */
     public function whereIn(string $column, array $values) : QueryRelate;
 
-
     /**
      * @param string $column
      * @param array $values
      * @return QueryRelate
      */
     public function orWhereIn(string $column, array $values) : QueryRelate;
-
 
     /**
      * @param string $column
@@ -181,7 +159,6 @@ interface QueryRelate
      */
     public function whereNotIn(string $column, array $values) : QueryRelate;
 
-
     /**
      * @param string $column
      * @param array $values
@@ -189,13 +166,11 @@ interface QueryRelate
      */
     public function orWhereNotIn(string $column, array $values) : QueryRelate;
 
-
     /**
      * @param string $column
      * @return QueryRelate
      */
     public function whereNull(string $column) : QueryRelate;
-
 
     /**
      * @param string $column
@@ -203,13 +178,11 @@ interface QueryRelate
      */
     public function orWhereNull(string $column) : QueryRelate;
 
-
     /**
      * @param string $column
      * @return QueryRelate
      */
     public function whereNotNull(string $column) : QueryRelate;
-
 
     /**
      * @param string $column
@@ -217,20 +190,17 @@ interface QueryRelate
      */
     public function orWhereNotNull(string $column) : QueryRelate;
 
-
     /**
      * @param string $sql
      * @return QueryRelate
      */
     public function raw(string $sql) : QueryRelate;
 
-
     /**
      * @param string $table
      * @return QueryRelate
      */
     public function from(string $table) : QueryRelate;
-
 
     /**
      * @param string $table
@@ -241,14 +211,12 @@ interface QueryRelate
      */
     public function join(string $table, string $one, string $operator = '=', string $two = '') : QueryRelate;
 
-
     /**
      * @param string $table
      * @param \Closure $callback
      * @return QueryRelate
      */
     public function joinByClosure(string $table, \Closure $callback) : QueryRelate;
-
 
     /**
      * @param string $table
@@ -259,14 +227,12 @@ interface QueryRelate
      */
     public function leftJoin(string $table, string $first, string $operator = '=', string $two = '') : QueryRelate;
 
-
     /**
      * @param string $table
      * @param \Closure $callback
      * @return QueryRelate
      */
     public function leftJoinByClosure(string $table, \Closure $callback) : QueryRelate;
-
 
     /**
      * @param string $table
@@ -277,7 +243,6 @@ interface QueryRelate
      */
     public function rightJoin(string $table, string $first, string $operator = '=', string $two = '') : QueryRelate;
 
-
     /**
      * @param string $table
      * @param \Closure $callback
@@ -285,18 +250,15 @@ interface QueryRelate
      */
     public function rightJoinByClosure(string $table, \Closure $callback) : QueryRelate;
 
-
     /**
      * @param callable $callable
      * @return QueryRelate
      */
     public function callable(callable $callable) : QueryRelate;
 
-
     /**
      * @param array $wheres
      * @return QueryRelate
      */
     public function wheres(array $wheres) : QueryRelate;
-
 }
