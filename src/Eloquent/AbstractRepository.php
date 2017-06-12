@@ -649,5 +649,8 @@ abstract class AbstractRepository implements Repository, Eloquent
             }
             return $result;
         }
+
+        $class = static::class;
+        throw new \BadMethodCallException("Call to undefined method {$class}::{$name}");
     }
 }
